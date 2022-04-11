@@ -11,19 +11,9 @@ To determine the number of retiring employees per title, and to identify employe
 
 ## Results:- 
 The table below shows that all emplyees who were born between Januray 1, 1952 and December 31, 1955.  
-SELECT e.emp_no,
-		e.first_name, 
-		e.last_name,
-		t.title,
-		t.from_date,
-		t.to_date
-INTO retirement_title
-FROM employees as e 
-inner join titles as t
-on (e.emp_no = t.emp_no)
-WHERE (e.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
-ORDER BY e.emp_no;
+
 ![](retirement_titles.PNG)
+
 In the above table some employees had duplicate entities. We removed such duplicates using DISTINCT ON statement and created a Unique title. 
 Finally, we sorted the table in ascending order by employee number and descending order by the last date of the most recent title. 
 
@@ -36,13 +26,9 @@ FROM retirement_title as rt
 ORDER BY emp_no, to_date DESC;
 
 ![](Unique_titles.PNG)
+
 Below is a retiring titles table shows the number of employees by their most recent job titles who are about to retire. 
-select count(ut.emp_no), 
-	ut.title 
-INTO retiring_titles
-from unique_titles as ut 
-group by ut.title 
-order by count(ut.title) desc;
+
 ![](retiring_titles.PNG)
 
 ## Deliverable 2: The Employees Eligible for the Mentorship Program
