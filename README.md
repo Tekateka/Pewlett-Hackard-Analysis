@@ -38,36 +38,9 @@ The other analysis was a mentorship-eligibility table that holds the current emp
   (refer to the table below) shows that there is no manager listed as mentorship eligibility thus the company will face a shortage of mentors in the management position as well. 
 
 ### Table 1. Number of employees eligible for mentorship by title
-SELECT COUNT(me.emp_no),
-			me.title
-FROM mentorship_eligibility as me 
-GROUP BY me.title
-order by count(me.title) desc;                    
+                  
 ![](mentors_count.PNG)
 
 ### Table 2. Number of retiring employees by department 
-select distinct on(de.emp_no) emp_no,
-				de. dept_no,
-				de.to_date
-INTO recent_dept
-from dept_emp as de
-order by de.emp_no asc, to_date DESC;
 
-select ut.emp_no,
-		ut.title, 
-		rd.dept_no,
-		rd.to_date,
-		d.dept_name
-INTO dept_order
-from unique_titles as ut 
-left join recent_dept as rd 
-on ut.emp_no = rd.emp_no
-left join departments as d 
-on rd.dept_no = d.dept_no;
-
-select count(do2.emp_no),
-		do2.dept_name
-from dept_order as do2 
-group by dept_name
-order by count desc;
 ![](Retirees_department.PNG)
