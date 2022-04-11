@@ -17,14 +17,6 @@ The table below shows that all emplyees who were born between Januray 1, 1952 an
 In the above table some employees had duplicate entities. We removed such duplicates using DISTINCT ON statement and created a Unique title. 
 Finally, we sorted the table in ascending order by employee number and descending order by the last date of the most recent title. 
 
-SELECT DISTINCT ON (emp_no) emp_no,
- 		rt.first_name,
- 		rt.last_name,
- 		rt.title
-INTO unique_titles
-FROM retirement_title as rt 
-ORDER BY emp_no, to_date DESC;
-
 ![](Unique_titles.PNG)
 
 Below is a retiring titles table shows the number of employees by their most recent job titles who are about to retire. 
@@ -34,22 +26,7 @@ Below is a retiring titles table shows the number of employees by their most rec
 ## Deliverable 2: The Employees Eligible for the Mentorship Program
 ## Results:-  
 The other analysis was a mentorship-eligibility table that holds the current employees who were born between January 1, 1965 and December 51, 1965. 
-SELECT DISTINCT ON (e.emp_no) e.emp_no,
-		e.first_name, 
-		e.last_name,
-		e.birth_date,
-		de.from_date,
-		de.to_date,
-		t.title
-INTO mentorship_eligibility
-from employees as e 
-inner join dept_emp as de 
-on (e.emp_no = de.emp_no)
-inner join titles as t 
-on (e.emp_no = t.emp_no)
-where (de.to_date = '9999-01-01')
-	and (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31')	
-ORDER BY e.emp_no;
+
 ![](mentorship_eligibilty.PNG)
 
 ## Summary: 
